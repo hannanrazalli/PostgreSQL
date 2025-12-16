@@ -4,3 +4,6 @@ Right click @ database > create > database > right click @ database name > resto
 CREATE DATABASE test; #create database named test
 
 SELECT * FROM film; #select everything from database film
+
+SELECT DISTINCT store_id FROM customer; #select all different store_id, no duplicate
+
