@@ -7,3 +7,5 @@ SELECT * FROM film; #select everything from database film
 
 SELECT DISTINCT store_id FROM customer; #select all different store_id, no duplicate
 
+SELECT COUNT(store_id) FROM customer; #sum of the store_id number. duplicate or not, it will sum all numbers
+
