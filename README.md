@@ -10,3 +10,4 @@ SELECT DISTINCT store_id FROM customer; #select all different store_id, no dupli
 SELECT COUNT(store_id) FROM customer; #sum of the store_id number. duplicate or not, it will sum all numbers
 
 SELECT COUNT(DISTINCT store_id) FROM customer; #sql will read distinct first, then count the distinct
+SELECT count(distinct(amount)) FROM payment;
