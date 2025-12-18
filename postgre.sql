@@ -49,3 +49,7 @@ FROM products; -- 10 numbers are allowed in total, 2 of them after the decimal p
 SELECT * FROM customers
 WHERE city LIKE 'L_nd__'; -- _ represents a single character wildcard
 
+SELECT product_id, product_name, category_name
+FROM products
+INNER JOIN categories ON products.category_id = categories.category_id; --Only shows matching records from both tables
+
