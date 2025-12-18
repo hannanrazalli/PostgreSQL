@@ -62,3 +62,11 @@ FROM orders
 LEFT JOIN customers ON orders.customer_id = customers.customer_id
 GROUP BY customer_name; -- Shows all customers, even those without orders
 
+SELECT customers.customer_name,
+SUM(order_details.quantity * products.price)
+FROM order_details
+INNER JOIN products ON order_details.product_id = products.product_id
+INNER JOIN orders ON order_details.order_id = orders.order_id
+INNER JOIN customers ON orders.customer_id = customers.customer_id
+GROUP BY customers.customer_id, customers.customer_name
+HAVING SUM(order_details.quantity * products.price) >= 1000; -- Shows only customers with total orders of at least 1000
