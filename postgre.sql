@@ -53,3 +53,7 @@ SELECT product_id, product_name, category_name
 FROM products
 INNER JOIN categories ON products.category_id = categories.category_id; --Only shows matching records from both tables
 
+SELECT testproduct_id, product_name, category_name
+FROM testproducts
+CROSS JOIN categories; --Instead of matching records, it shows all possible combinations
+
