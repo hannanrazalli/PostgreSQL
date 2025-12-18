@@ -57,3 +57,8 @@ SELECT testproduct_id, product_name, category_name
 FROM testproducts
 CROSS JOIN categories; --Instead of matching records, it shows all possible combinations
 
+SELECT customers.customer_name, COUNT(orders.order_id)
+FROM orders
+LEFT JOIN customers ON orders.customer_id = customers.customer_id
+GROUP BY customer_name; -- Shows all customers, even those without orders
+
