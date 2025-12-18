@@ -70,3 +70,13 @@ INNER JOIN orders ON order_details.order_id = orders.order_id
 INNER JOIN customers ON orders.customer_id = customers.customer_id
 GROUP BY customers.customer_id, customers.customer_name
 HAVING SUM(order_details.quantity * products.price) >= 1000; -- Shows only customers with total orders of at least 1000
+
+SELECT product_name,
+CASE
+  WHEN price < 10 THEN 'Low price product'
+  WHEN price > 50 THEN 'High price product'
+ELSE
+  'Normal product'
+END
+FROM products; --Once a condition is true, it will stop reading and return the result. If no conditions are true, it returns the value in the ELSE clause.
+
