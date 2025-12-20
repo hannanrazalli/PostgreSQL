@@ -80,3 +80,7 @@ ELSE
 END
 FROM products; --Once a condition is true, it will stop reading and return the result. If no conditions are true, it returns the value in the ELSE clause.
 
+DELETE FROM cars
+WHERE brand = 'Volvo'; --Delete all rows where brand is Volvo
+
+DROP TABLE cars; --Drop table
