@@ -40,7 +40,7 @@ WHERE model LIKE 'M%'; -- Selects all cars where the model starts with 'M'
 SELECT * FROM cars
 WHERE model ILIKE 'm%'; -- Case-insensitive version of LIKE
 
-SELECT  * FROM cars
+SELECT * FROM cars
 WHERE brand IN ('Ford', 'Toyota');
 
 SELECT AVG(price)::NUMERIC(10,2)
@@ -83,4 +83,4 @@ FROM products; --Once a condition is true, it will stop reading and return the r
 DELETE FROM cars
 WHERE brand = 'Volvo'; --Delete all rows where brand is Volvo
 
-DROP TABLE cars; --Drop table
+DROP TABLE cars; --Delete table
