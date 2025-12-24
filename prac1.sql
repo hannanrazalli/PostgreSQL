@@ -22,3 +22,12 @@ CREATE TABLE IF NOT EXISTS jobs(
     MAX_SALARY decimal(6,0),
     CHECK(MAX_SALARY<=25000) -- Constraint to limit MAX_SALARY to 25000
 );
+
+CREATE TABLE IF NOT EXISTS countries(
+    -- Column to store the two-letter country code
+    COUNTRY_ID varchar(2),
+    COUNTRY_NAME varchar(40)
+    CHECK(COUNTRY_NAME IN('Italy','India','China')), -- Constraint to limit COUNTRY_NAME to specific values
+    REGION_ID decimal(10,0)
+); -- PostgreSQL syntax for CHECK constraint
+
