@@ -8,8 +8,17 @@ CREATE TABLE countries(
 );
 
 --ALTER TABLE: MySQL & PostgreSQL slight difference in syntax for modifying column constraints.
-ALTER TABLE countries
-ALTER COLUMN population SET NOT NULL; -- PostgreSQL syntax
+ALTER TABLE dup_countries ALTER COLUMN country_name TYPE VARCHAR(10);
+ALTER TABLE dup_countries ALTER COLUMN country_name SET NOT NULL; --PostgreSQL syntax
 
-ALTER TABLE countries
-MODIFY COLUMN country_name VARCHAR(150); -- MySQL syntax
+ALTER TABLE dup_countries 
+MODIFY country_name VARCHAR(10) NOT NULL; -- MySQL syntax
+
+--LIMIT Values to certain value:
+CREATE TABLE IF NOT EXISTS jobs(
+    JOB_ID varchar(10) NOT NULL,
+    JOB_TITLE varchar(35) NOT NULL,
+    MIN_SALARY decimal(6,0),
+    MAX_SALARY decimal(6,0),
+    CHECK(MAX_SALARY<=25000) -- Constraint to limit MAX_SALARY to 25000
+);
