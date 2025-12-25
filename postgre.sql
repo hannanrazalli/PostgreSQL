@@ -84,3 +84,11 @@ SELECT ROUND(SUM(transaction_qty * unit_price)) AS Total_sales
 FROM css
 WHERE EXTRACT (MONTH FROM transaction_date) = 5;
 
+SELECT
+	month(transaction_date) AS Month,
+    round(sum(transaction_qty * unit_price),2) AS Total_sales,
+    round((sum(transaction_qty * unit_price) - lag(sum(transaction_qty * unit_price),1) over(order by month(transaction_date))) /
+    lag(sum(transaction_qty * unit_price),1) over(order by month(transaction_date)) * 100,2) AS MoM
+FROM css
+WHERE month(transaction_date) IN (4,5)
+GROUP BY month;
