@@ -80,3 +80,7 @@ ELSE
 END
 FROM products; --Once a condition is true, it will stop reading and return the result. If no conditions are true, it returns the value in the ELSE clause.
 
+SELECT ROUND(SUM(transaction_qty * unit_price)) AS Total_sales
+FROM css
+WHERE EXTRACT (MONTH FROM transaction_date) = 5;
+
