@@ -22,3 +22,4 @@ CREATE TABLE IF NOT EXISTS jobs(
     MAX_SALARY decimal(6,0),
     CHECK(MAX_SALARY<=25000) -- Constraint to limit MAX_SALARY to 25000
 );
+
