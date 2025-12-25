@@ -31,3 +31,13 @@ CREATE TABLE IF NOT EXISTS countries(
     REGION_ID decimal(10,0)
 ); -- PostgreSQL syntax for CHECK constraint
 
+CREATE TABLE IF NOT EXISTS job_history(
+    EMPLOYEE_ID int NOT NULL,
+    START_DATE date NOT NULL,
+    END_DATE date NOT NULL,
+    JOB_ID varchar(10) NOT NULL,
+    DEPARTMENT_ID int NOT NULL,
+    CHECK(END_DATE > START_DATE), -- Constraint to ensure END_DATE is after START_DATE
+    CHECK(END_DATE::text LIKE '____-__-__')
+    UNIQUE(EMPLOYEE_ID)
+);
