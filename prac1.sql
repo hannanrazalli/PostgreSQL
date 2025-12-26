@@ -59,4 +59,11 @@ FROM
 Where
 	month(transaction_date) = 5;
 
-    
+SELECT
+	month,
+    Total_orders,
+	(Total_orders - lag(Total_orders,1) over(order by month))/
+    lag(Total_orders,1) over(order by month) * 100 AS MoM
+FROM orders
+WHERE month IN (4,5)
+GROUP by month;
