@@ -67,3 +67,9 @@ SELECT
 FROM orders
 WHERE month IN (4,5)
 GROUP by month;
+
+SELECT
+	sum(transaction_qty) AS Total_quantity_sold
+FROM
+	css
+WHERE month(transaction_date) = 5;
