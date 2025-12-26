@@ -23,3 +23,12 @@ CREATE TABLE IF NOT EXISTS jobs(
     CHECK(MAX_SALARY<=25000) -- Constraint to limit MAX_SALARY to 25000
 );
 
+SELECT
+    MONTH(transaction_date) AS Month,
+    ROUND(SUM(unit_price * transaction_qty),2) AS Total_Sales,
+    (ROUND(SUM(unit_price * transaction_qty),2) - LAG(ROUND(SUM(unit_price * transaction_qty),2),1) OVER(ORDER BY MONTH(transaction_date))) /
+    LAG(ROUND(SUM(unit_price * transaction_qty),2),1) OVER(ORDER BY MONTH(transaction_date)) * 100 AS MoM
+FROM
+    css
+WHERE month(transaction_date) IN (4,5)
+GROUP BY month;
