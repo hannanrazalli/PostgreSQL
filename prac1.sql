@@ -73,3 +73,21 @@ SELECT
 FROM
 	css
 WHERE month(transaction_date) = 5;
+
+WITH qty AS (
+SELECT
+	month(transaction_date) AS month,
+	sum(transaction_qty) AS Total_quantity_sold
+FROM
+	css
+GROUP BY month
+)
+SELECT
+	month,
+    Total_quantity_sold,
+    (Total_quantity_sold - lag(Total_quantity_sold,1) over(order by month)) /
+    lag(Total_quantity_sold,1) over(order by month) * 100 AS MoM
+FROM qty
+WHERE month IN (4,5)
+GROUP by month;
+
