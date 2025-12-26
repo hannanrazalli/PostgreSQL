@@ -51,3 +51,12 @@ FROM
 WHERE
 	month IN (4,5)
 GROUP BY month;
+
+SELECT
+	COUNT(transaction_qty) as Total_orders
+FROM
+	css
+Where
+	month(transaction_date) = 5;
+
+    
