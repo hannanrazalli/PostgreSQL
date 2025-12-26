@@ -32,3 +32,22 @@ FROM
     css
 WHERE month(transaction_date) IN (4,5)
 GROUP BY month;
+
+WITH sales AS(
+SELECT
+	month(transaction_date) AS month,
+    round(sum(transaction_qty * unit_price),2) as total_sales
+FROM
+	css
+GROUP BY month
+)
+SELECT
+	month,
+    total_sales,
+    round((total_sales - lag(total_sales,1) over(order by month)) /
+    lag(total_sales,1) over(order by month) * 100,2) AS MoM
+FROM
+	sales
+WHERE
+	month IN (4,5)
+GROUP BY month;
