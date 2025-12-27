@@ -99,3 +99,12 @@ FROM
 	css
 WHERE
 	transaction_date = '2023-05-18';
+
+SELECT
+	day(transaction_date) AS DoM,
+    SUM(transaction_qty * unit_price) AS sales
+FROM
+	css
+WHERE month(transaction_date) = 5
+GROUP BY DoM;
+
