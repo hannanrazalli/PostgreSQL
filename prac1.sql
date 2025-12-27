@@ -145,3 +145,25 @@ SELECT
 FROM
 	daily_sales;
 
+--MySQL: CASE
+WITH daily_sales AS(
+SELECT
+	day(transaction_date) AS day_of_month,
+    sum(transaction_qty * unit_price) as total_sales
+from
+	css
+where
+	month(transaction_date) = 5
+group by
+	day_of_month
+)
+SELECT
+	day_of_month,
+	CASE
+		WHEN total_sales > avg(total_sales) over() THEN 'Above average'
+        WHEN total_sales < avg(total_sales) over() THEN 'Below average'
+        ELSE 'Average'
+	end as sales_status,
+    total_sales
+FROM
+	daily_sales
