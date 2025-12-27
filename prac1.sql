@@ -74,6 +74,7 @@ FROM
 	css
 WHERE month(transaction_date) = 5;
 
+--MySQL: WITH
 WITH qty AS (
 SELECT
 	month(transaction_date) AS month,
@@ -91,6 +92,7 @@ FROM qty
 WHERE month IN (4,5)
 GROUP by month;
 
+--MySQL: CONCAT
 SELECT
 	CONCAT(ROUND(SUM(transaction_qty * unit_price)/1000,1), "K") AS total_sales,
     CONCAT(round(SUM(transaction_qty)/1000,1), "k") AS total_quantity_sold,
@@ -100,6 +102,8 @@ FROM
 WHERE
 	transaction_date = '2023-05-18';
 
+
+--MySQL: Day
 SELECT
 	day(transaction_date) AS DoM,
     SUM(transaction_qty * unit_price) AS sales
@@ -108,6 +112,8 @@ FROM
 WHERE month(transaction_date) = 5
 GROUP BY DoM;
 
+
+--MySQL: Internal Query
 SELECT
 	avg(total_sales) AS average_sales
 FROM
@@ -120,4 +126,22 @@ WHERE
 	month(transaction_date) = 5
 GROUP BY transaction_date
 ) AS internal_query;
+
+--OR
+
+WITH daily_sales AS(
+SELECT
+	day(transaction_date) AS day,
+	sum(transaction_qty * unit_price) AS total_sales
+FROM
+	css
+WHERE
+	month(transaction_date) = 5
+GROUP BY transaction_date
+)
+SELECT
+	day,
+	total_sales
+FROM
+	daily_sales;
 
