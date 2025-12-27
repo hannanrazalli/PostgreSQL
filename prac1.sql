@@ -108,3 +108,16 @@ FROM
 WHERE month(transaction_date) = 5
 GROUP BY DoM;
 
+SELECT
+	avg(total_sales) AS average_sales
+FROM
+	(
+SELECT
+	sum(transaction_qty * unit_price) AS total_sales
+FROM
+	css
+WHERE
+	month(transaction_date) = 5
+GROUP BY transaction_date
+) AS internal_query;
+
