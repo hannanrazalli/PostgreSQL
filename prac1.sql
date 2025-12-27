@@ -167,3 +167,17 @@ SELECT
     total_sales
 FROM
 	daily_sales
+
+--MySQL: dayofweek
+SELECT
+	CASE
+		WHEN dayofweek(transaction_date) IN (1,7) THEN 'Weekend'
+        ELSE 'Weekdays'
+	END AS day_type,
+    round(sum(transaction_qty * unit_price),2) AS total_sales
+FROM
+	css
+WHERE
+	month(transaction_date) = 5
+GROUP BY
+	day_type
