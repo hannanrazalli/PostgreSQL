@@ -194,3 +194,22 @@ GROUP BY
 	store_location
 ORDER BY
 	total_sales DESC
+
+--MySQL: CASE dayofweek
+SELECT
+	CASE
+		WHEN dayofweek(transaction_date) = 1 THEN 'Sunday'
+        WHEN dayofweek(transaction_date) = 2 THEN 'Monday'
+        WHEN dayofweek(transaction_date) = 3 THEN 'Tuesday'
+        WHEN dayofweek(transaction_date) = 4 THEN 'Wednesday'
+        WHEN dayofweek(transaction_date) = 5 THEN 'Thursday'
+        WHEN dayofweek(transaction_date) = 6 THEN 'Friday'
+        ELSE 'Saturday'
+	END AS Day_of_week,
+    round(sum(transaction_qty * unit_price)) AS Total_sales
+FROM
+	css
+WHERE
+	month(transaction_date) = 5
+GROUP BY
+	Day_of_week;
