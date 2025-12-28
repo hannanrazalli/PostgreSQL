@@ -308,3 +308,16 @@ SELECT
 	round(avg(total_sales),1) AS avg_sales
 FROM
 	daily_sales
+
+--PostgreSQL: EXTRACT day
+SELECT
+	extract(day from transaction_date) AS day_of_month,
+	sum(unit_price * transaction_qty) AS total_sales
+FROM
+	css
+WHERE
+	extract(month from transaction_date) = 5
+GROUP BY
+	transaction_date
+
+--PostgreSQL: 
