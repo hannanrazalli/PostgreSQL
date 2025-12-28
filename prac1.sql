@@ -226,3 +226,13 @@ GROUP BY
 	Hour_of_day
 ORDER BY
 	Hour_of_day
+
+
+--PostgreSQL: SUM
+SELECT
+	round(SUM(transaction_qty * unit_price)) AS total_sales
+FROM
+	css
+WHERE
+	extract (month from transaction_date) = 5;
+
