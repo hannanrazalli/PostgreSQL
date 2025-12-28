@@ -272,7 +272,7 @@ FROM
 WHERE
 	extract(month from transaction_date) = 5
 
-
+--PostgreSQL: day(transaction_date not same as MySQL
 SELECT
 	sum(unit_price * transaction_qty) AS total_sales,
 	sum(transaction_qty) AS total_quantity_sold,
