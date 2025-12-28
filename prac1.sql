@@ -291,3 +291,20 @@ FROM
 	css
 WHERE
 	transaction_date = '2023-05-18'
+
+
+--PostgreSQL: WITH & AVG - same as MySQL
+WITH daily_sales AS(
+SELECT
+	sum(unit_price * transaction_qty) AS total_sales
+FROM
+	css
+WHERE
+	extract(month from transaction_date) = 5
+GROUP BY
+	transaction_date
+)
+SELECT
+	round(avg(total_sales),1) AS avg_sales
+FROM
+	daily_sales
