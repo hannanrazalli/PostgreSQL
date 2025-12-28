@@ -320,4 +320,27 @@ WHERE
 GROUP BY
 	transaction_date
 
+--PostgreSQL: CASE
+WITH daily_sales AS(
+SELECT
+	extract(day from transaction_date) AS day_of_month,
+	sum(unit_price * transaction_qty) AS total_sales
+FROM
+	css
+WHERE
+	extract(month from transaction_date) = 5
+GROUP BY
+	transaction_date
+)
+SELECT
+	day_of_month,
+	CASE
+		WHEN total_sales > avg(total_sales) over() THEN 'Above Average'
+		WHEN total_sales < avg(total_sales) over() THEN 'Below Average'
+		ELSE 'Average'
+	END AS sales_status,
+	total_sales
+FROM
+	daily_sales
+
 --PostgreSQL: 
