@@ -255,3 +255,11 @@ SELECT
 	lag(total_sales,1) over(order by month) * 100,1) AS MoM
 FROM
 	sales
+
+--PostgreSQL: COUNT - same as MySQL
+SELECT
+	count(transaction_qty) AS total_orders
+FROM
+	css
+WHERE
+	extract(month from transaction_date) = 5
