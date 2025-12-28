@@ -181,3 +181,16 @@ WHERE
 	month(transaction_date) = 5
 GROUP BY
 	day_type
+
+--MySQL: DESC
+SELECT
+	store_location,
+    sum(transaction_qty * unit_price) AS total_sales
+FROM
+	css
+WHERE
+	month(transaction_date) = 5
+GROUP BY
+	store_location
+ORDER BY
+	total_sales DESC
