@@ -271,3 +271,13 @@ FROM
 	css
 WHERE
 	extract(month from transaction_date) = 5
+
+
+SELECT
+	sum(unit_price * transaction_qty) AS total_sales,
+	sum(transaction_qty) AS total_quantity_sold,
+	count(transaction_qty) AS total_orders
+FROM
+	css
+WHERE
+	transaction_date = '2023-05-18';
