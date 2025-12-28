@@ -343,4 +343,18 @@ SELECT
 FROM
 	daily_sales
 
+--PostgreSQL: extract dayofweek
+SELECT
+	CASE
+		WHEN extract(dow from transaction_date) IN (0,6) THEN 'Weekends'
+		ELSE 'Weekdays'
+	END AS day_type,
+	sum(transaction_qty * unit_price) AS total_sales
+FROM
+	css
+WHERE
+	extract(month from transaction_date) = 5
+GROUP BY
+	day_type
+
 --PostgreSQL: 
