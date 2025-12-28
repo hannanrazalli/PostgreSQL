@@ -213,3 +213,16 @@ WHERE
 	month(transaction_date) = 5
 GROUP BY
 	Day_of_week;
+
+--MySQL: Hour
+SELECT
+	hour(transaction_time) AS Hour_of_day,
+    ROUND(sum(transaction_qty * unit_price)) AS total_sales
+FROM
+	css
+WHERE
+	month(transaction_date) = 5
+GROUP BY
+	Hour_of_day
+ORDER BY
+	Hour_of_day
