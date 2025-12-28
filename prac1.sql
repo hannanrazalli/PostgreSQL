@@ -263,3 +263,11 @@ FROM
 	css
 WHERE
 	extract(month from transaction_date) = 5
+
+--PostgreSQL: SUM - same as MySQL
+SELECT
+	sum(transaction_qty) AS total_orders
+FROM
+	css
+WHERE
+	extract(month from transaction_date) = 5
