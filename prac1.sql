@@ -281,3 +281,13 @@ FROM
 	css
 WHERE
 	transaction_date = '2023-05-18';
+
+--PostgreSQL: CONCAT, ROUND - same as MySQL
+SELECT
+	concat(round(sum(unit_price * transaction_qty)/1000.0,1),'k') AS total_sales,
+	concat(round(sum(transaction_qty)/1000.0,1),'k') AS total_quantity_sold,
+	concat(round(count(transaction_qty)/1000.0,1),'k') AS total_orders
+FROM
+	css
+WHERE
+	transaction_date = '2023-05-18'
