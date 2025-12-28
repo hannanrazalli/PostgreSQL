@@ -236,3 +236,22 @@ FROM
 WHERE
 	extract (month from transaction_date) = 5;
 
+--PostgreSQL: LAG & OVER() - same as MySQL
+WITH sales AS(
+SELECT
+	extract(month from transaction_date) AS month,
+	round(sum(transaction_qty * unit_price)) AS total_sales
+FROM
+	css
+WHERE
+	extract(month from transaction_date) IN (4,5)
+GROUP BY
+	month
+)
+SELECT
+	month,
+	total_sales,
+	round((total_sales - lag(total_sales,1) over(order by month)) /
+	lag(total_sales,1) over(order by month) * 100,1) AS MoM
+FROM
+	sales
